@@ -1,0 +1,216 @@
+
++-------------+
+|DUMP ANALYSIS| dumped with objdump -d -M intel
++-------------+---------------------------------------------------------------------------------
+
+function <main>
+----SETTING UP main() STACK FRAME, INCLUDING THE 2 INPUT PARAMETERS ARGC AND ARGV
+endbr64 
+push   rbp
+mov    rbp,rsp
+sub    rsp,0x30
+mov    DWORD PTR [rbp-0x24],edi
+mov    QWORD PTR [rbp-0x30],rsi
+
+----ALLOCATE 24 BYTES AND STORE THE OWNING POINTER IN "alloc_ptr"
+mov    edi,0x18
+call   1090 <malloc@plt>
+mov    QWORD PTR [rbp-0x10],rax
+
+----IF (ARGC <= 1) { JUMP TO FAIL }
+cmp    DWORD PTR [rbp-0x24],0x1
+jle    1302 <main+0x179> # LABEL_FAIL
+
+----alloc_ptr[0] = 110 decimal
+mov    rax,QWORD PTR [rbp-0x10]
+mov    DWORD PTR [rax],0x6e
+
+----alloc_ptr[1] = 96 decimal
+mov    rax,QWORD PTR [rbp-0x10]
+add    rax,0x4
+mov    DWORD PTR [rax],0x60
+
+----alloc_ptr[2] = 94 decimal
+mov    rax,QWORD PTR [rbp-0x10]
+add    rax,0x8
+mov    DWORD PTR [rax],0x5e
+
+----alloc_ptr[3] = 109 decimal
+mov    rax,QWORD PTR [rbp-0x10]
+add    rax,0xc
+mov    DWORD PTR [rax],0x6d
+
+----alloc_ptr[4] = 96 decimal
+mov    rax,QWORD PTR [rbp-0x10]
+add    rax,0x10
+mov    DWORD PTR [rax],0x60
+
+----alloc_ptr[5] = 111 decimal
+mov    rax,QWORD PTR [rbp-0x10]
+add    rax,0x14
+mov    DWORD PTR [rax],0x6f
+
+----FOR(int i = 0; i < 5; i++)
+mov    DWORD PTR [rbp-0x18],0x0
+jmp    126b <main+0xe2> # LABEL_LoopCompare_A
+# LABEL_LoopBegin_A:
+    ----alloc_ptr[0] = alloc_ptr[0] + 1
+    mov    rax,QWORD PTR [rbp-0x10]
+    mov    eax,DWORD PTR [rax]
+    lea    edx,[rax+0x1]
+    mov    rax,QWORD PTR [rbp-0x10]
+    mov    DWORD PTR [rax],edx
+
+    ----alloc_ptr[1] = alloc_ptr[1] + 1
+    mov    rax,QWORD PTR [rbp-0x10]
+    add    rax,0x4
+    mov    edx,DWORD PTR [rax]
+    add    edx,0x1
+    mov    DWORD PTR [rax],edx
+
+    ----alloc_ptr[2] = alloc_ptr[2] + 1
+    mov    rax,QWORD PTR [rbp-0x10]
+    add    rax,0x8
+    mov    edx,DWORD PTR [rax]
+    add    edx,0x1
+    mov    DWORD PTR [rax],edx
+
+    ----alloc_ptr[3] = alloc_ptr[3] + 1
+    mov    rax,QWORD PTR [rbp-0x10]
+    add    rax,0xc
+    mov    edx,DWORD PTR [rax]
+    add    edx,0x1
+    mov    DWORD PTR [rax],edx
+
+    ----alloc_ptr[4] = alloc_ptr[4] + 1
+    mov    rax,QWORD PTR [rbp-0x10]
+    add    rax,0x10
+    mov    edx,DWORD PTR [rax]
+    add    edx,0x1
+    mov    DWORD PTR [rax],edx
+
+    ----alloc_ptr[5] = alloc_ptr[5] + 1
+    mov    rax,QWORD PTR [rbp-0x10]
+    add    rax,0x14
+    mov    edx,DWORD PTR [rax]
+    add    edx,0x1
+    mov    DWORD PTR [rax],edx
+
+    add    DWORD PTR [rbp-0x18],0x1
+# LABEL_LoopCompare_A:
+cmp    DWORD PTR [rbp-0x18],0x4
+jle    120d <main+0x84> # LABEL_LoopBegin_A
+
+----ALLOCATE 7 BYTES AND STORE THE OWNING POINTER IN "string_ptr"
+mov    edi,0x7
+call   1090 <malloc@plt>
+mov    QWORD PTR [rbp-0x8],rax
+
+----FOR(int j = 0; j < 7; j++)
+mov    DWORD PTR [rbp-0x14],0x0
+jmp    12b1 <main+0x128> # LABEL_LoopCompare_B
+# LABEL_LoopBegin_B:
+    ----string_ptr[j] = alloc_ptr[j]
+    mov    eax,DWORD PTR [rbp-0x14] - RAX = J
+    cdqe # convert double to quad (cast "j" from int32 to int64)
+    lea    rdx,[rax*4+0x0]          - RDX = J*4
+    mov    rax,QWORD PTR [rbp-0x10] - RAX = alloc_ptr
+    add    rax,rdx                  - RAX = RAX + J*4
+    mov    edx,DWORD PTR [rax]      - RDX = alloc_ptr[J]
+    mov    eax,DWORD PTR [rbp-0x14] - RAX = J
+    movsxd rcx,eax                  - RCX = J
+    mov    rax,QWORD PTR [rbp-0x8]  - RAX = string_ptr
+    add    rax,rcx                  - RAX = string_ptr + J
+    mov    BYTE PTR [rax],dl        - string_ptr[J] = alloc_ptr[J]
+
+    add    DWORD PTR [rbp-0x14],0x1
+# LABEL_LoopCompare_B:
+cmp    DWORD PTR [rbp-0x14],0x6
+jle    1288 <main+0xff> # LABEL_LoopBegin_B
+
+----string_ptr[6] = '\0'
+mov    rax,QWORD PTR [rbp-0x8]
+add    rax,0x6
+mov    BYTE PTR [rax],0x0
+
+----char* str1 = ARGV[1]
+mov    rax,QWORD PTR [rbp-0x30]
+add    rax,0x8
+mov    rax,QWORD PTR [rax]
+
+----char* str2 = string_ptr
+mov    rdx,QWORD PTR [rbp-0x8]
+
+----strcmp(str1, str2)
+mov    rsi,rdx
+mov    rdi,rax
+call   1080 <strcmp@plt>
+test   eax,eax
+
+----IF(str1 == str2) {JUMP TO LABEL_SUCCESS}, ELSE {JUMP TO LABEL_FAIL}
+jne    12f1 <main+0x168> # LABEL_UNKNOWN:
+
+# LABEL_SUCCESS:
+lea    rax,[rip+0xd1d]        # 2004 <_IO_stdin_used+0x4>
+mov    rdi,rax
+call   1070 <puts@plt>
+jmp    1311 <main+0x188> # LABEL_RETURNZERO
+
+# LABEL_UNKNOWN:
+lea    rax,[rip+0xd15]        # 200d <_IO_stdin_used+0xd>
+mov    rdi,rax
+call   1070 <puts@plt>
+jmp    1311 <main+0x188> # LABEL_RETURNZERO
+
+# LABEL_FAIL:
+lea    rax,[rip+0xd04]        # 200d <_IO_stdin_used+0xd>
+mov    rdi,rax
+call   1070 <puts@plt>
+
+# LABEL_RETURNZERO
+mov    eax,0x0
+leave  
+ret
+---------------------------------------------------------------------------------------------------
+
+
+
+LOCAL VARIABLES MAP
+[rbp-0x8]  = 64-bit pointer, points to allocated memory, "char* string_ptr"
+[rbp-0x10] = 64-bit pointer, points to allocated memory, "int* alloc_ptr"
+[rbp-0x14] = 32-bit int, loop iterator, "int j"
+[rbp-0x18] = 32-bit int, loop iterator, "int i"
+[rbp-0x24] = 32-bit int, possibly argc, "int argc"
+[rbp-0x30] = 64-bit int, possibly argv, "char** argv"
+
+
+STATIC VARIABLES MAP
+[rip+0xd04] = possibly points to the string "Denied." , pulled with the strings unix command
+[rip+0xd15] = possibly points to the string "Denied." , pulled with the strings unix command
+[rip+0xd1d] = possibly points to the string "Welcome." , pulled with the strings unix command
+
+
+CHEATSHEET
+BYTE  PTR = 8-bits  = 1 bytes
+WORD  PTR = 16-bits = 2 bytes
+DWORD PTR = 32-bits = 4 bytes
+QWORD PTR = 64-bits = 8 bytes
+
+
+NOTES
+-alloc_ptr allocates 24 bytes, and since the program only uses DWORD_PTR to store
+values in it, i am 99% sure its just an array of 32-bit ints, the C equivalent should
+be: uint32_t alloc_ptr[6]
+-all 32-bit int values stored in alloc_ptr[] are below 0x80000000, so i shouldn't have
+to worry about negative values right now
+-these are strangely specific numbers used to populate the alloc_ptr array, directly
+translating them as chars outputs gibberish, but i am sure this approach might be
+related to the solution
+-APPARENTLY the "load effective address" is used as an optimization when you just want
+to multiply a number to the power of 2 or/and add another immediate number to it, this 
+took me a while...
+-the second loop (j iterator) is most likely just copying alloc_ptr elements into 
+string_ptr
+-alloc_ptr has 1 less elements than string_ptr, so why does the loop not adjust for this?
+copying right now may or may not lead to a segfault
+-solved it, huzzah!
