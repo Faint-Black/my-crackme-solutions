@@ -1,0 +1,148 @@
+
++-------------+
+|DUMP ANALYSIS| dumped with objdump -d -M intel
++-------------+------------------------------------------------------------------------------------
+
+----SETTING UP main() STACK FRAME, INCLUDING THE 2 INPUT PARAMETERS ARGC AND ARGV
+function <main>:
+endbr64 
+push   rbp
+mov    rbp,rsp
+sub    rsp,0x20
+mov    DWORD PTR [rbp-0x14],edi
+mov    QWORD PTR [rbp-0x20],rsi
+
+----IF (argc != 2) { JUMP TO LABEL_FAIL_1/5 }
+cmp    DWORD PTR [rbp-0x14],0x2
+jne    1220 <main+0xd7> 
+
+----alias_ptr = argv[0]
+mov    rax,QWORD PTR [rbp-0x20]
+mov    rax,QWORD PTR [rax]
+mov    QWORD PTR [rbp-0x8],rax
+
+----var_char = FIRST CHARACTER OF argv[1]
+mov    rax,QWORD PTR [rbp-0x20]
+add    rax,0x8
+mov    rax,QWORD PTR [rax]
+movzx  eax,BYTE PTR [rax]
+mov    BYTE PTR [rbp-0xd],al
+
+----IF ((FIRST CHARACTER OF argv[0] + FIRST CHARACTER OF argv[1]) != 110 decimal) { JUMP TO LABEL_FAIL_2/5 }
+movsx  edx,BYTE PTR [rbp-0xd]    - RDX = var_char
+mov    rax,QWORD PTR [rbp-0x8]   - RAX = alias_ptr(alias for argv[0])
+movzx  eax,BYTE PTR [rax]        - RAX = FIRST CHARACTER OF argv[0]
+movsx  eax,al                    - ?
+add    eax,edx                   - RAX = FIRST CHARACTER OF argv[0] + FIRST CHARACTER OF argv[1]
+mov    DWORD PTR [rbp-0xc],eax   - var_result = RAX
+cmp    DWORD PTR [rbp-0xc],0x6e
+jne    120a <main+0xc1>
+
+----IF (argv[0][3] == 'n') {JUMP TO LABEL_SUCCESS}
+mov    rax,QWORD PTR [rbp-0x8]
+add    rax,0x3
+movzx  eax,BYTE PTR [rax]
+cmp    al,0x6e
+je     11d7 <main+0x8e>
+
+----IF (argv[0][4] == 'i') {JUMP TO LABEL_SUCCESS}
+mov    rax,QWORD PTR [rbp-0x8]
+add    rax,0x4
+movzx  eax,BYTE PTR [rax]
+cmp    al,0x69
+je     11d7 <main+0x8e>
+
+----IF (argv[0][5] == 'm') {JUMP TO LABEL_SUCCESS}
+mov    rax,QWORD PTR [rbp-0x8]
+add    rax,0x5
+movzx  eax,BYTE PTR [rax]
+cmp    al,0x6d
+je     11d7 <main+0x8e>
+
+----IF (argv[0][6] == 'a') {JUMP TO LABEL_SUCCESS}
+mov    rax,QWORD PTR [rbp-0x8]
+add    rax,0x6
+movzx  eax,BYTE PTR [rax]
+cmp    al,0x61
+jne    11f4 <main+0xab>
+
+# LABEL_SUCCESS:
+movsx  edx,BYTE PTR [rbp-0xd]
+mov    rax,QWORD PTR [rbp-0x8]
+add    rax,0x3
+movzx  eax,BYTE PTR [rax]
+movsx  eax,al
+mov    esi,edx
+mov    edi,eax
+call   123b <test>
+jmp    1234 <main+0xeb>
+
+# LABEL_FAIL_3/5
+lea    rax,[rip+0xe09]        # 2004 <_IO_stdin_used+0x4>
+mov    rdi,rax
+mov    eax,0x0
+call   1050 <printf@plt>
+jmp    1234 <main+0xeb>
+
+# LABEL_FAIL_2/5
+lea    rax,[rip+0xe05]        # 2016 <_IO_stdin_used+0x16>
+mov    rdi,rax
+mov    eax,0x0
+call   1050 <printf@plt>
+jmp    1234 <main+0xeb>
+
+# LABEL_FAIL_1/5
+lea    rax,[rip+0xe00]        # 2027 <_IO_stdin_used+0x27>
+mov    rdi,rax
+mov    eax,0x0
+call   1050 <printf@plt>
+
+mov    eax,0x0
+leave  
+ret  
+---------------------------------------------------------------------------------------------------
+
+
+
+LOCAL VARIABLES MAP
+[rbp-0x8]  = 64-bit, "char* alias_ptr"
+[rbp-0xd]  = 8-bit, "char var_char"
+[rbp-0xc]  = 32-bit, "int var_result"
+[rbp-0x14] = 32-bit, "int argc"
+[rbp-0x20] = 64-bit, "char** argv"
+
+
+STATIC VARIABLES MAP
+[rip+0x___] = "Try more .... 3/5"
+[rip+0x___] = "Try More ....2/5"
+[rip+0x___] = "Try more ... 1/5"
+[rip+0x___] = "true point 5/5"
+[rip+0x___] = "false point 4/5"
+
+
+CHEATSHEET
+BYTE  PTR = 8-bits  = 1 bytes
+WORD  PTR = 16-bits = 2 bytes
+DWORD PTR = 32-bits = 4 bytes
+QWORD PTR = 64-bits = 8 bytes
+
+
+NOTES
+-side note: the fuckers at crackmes.one's comment section already spoiled the 
+fact that changing the binary's name is part of the solution...
+-did the author just not add newline characters at the end of the strings? lol
+-first character of argv[0] will always be a dot (46 decimal), so: X + 46 = 110
+X = 64, which points to the "@" char in the ascii table
+-i was right, also, i really like this "milestone" design with the numbered fail
+messages that the author made
+-i solved it, however, this assembly was very weird, with reasons i will explain
+later
+-i skipped fail 4/5 straight to 5/5, there is another function called "test"
+that i assume will check if the input is a "false point" or "true point", but since
+i already got the solution i wont investigate further
+-list of weird things about this assembly: 
+    1- you have to go out of your way to get the penultimate fail message?
+    2- lots of unused and redundant variables, like the alias pointer and var_char
+    3- what does "true point" and "false point" mean?
+    4- the whole "nima" string thing is super strange
+    5- no newline characters in the printf

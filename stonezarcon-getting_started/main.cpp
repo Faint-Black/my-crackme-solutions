@@ -4,6 +4,8 @@
 
 // https://crackmes.one/crackme/660a24f1cddae72ae250bf56
 //
+// solution: argv[1] = "secret"
+//
 // The following is a recreation of what the original source code of the crackme
 // binary may have looked like.
 
@@ -37,6 +39,7 @@ int main(int argc, char** argv)
     }
     // print the password:
     // printf("%c %c %c %c %c %c \n", alloc_ptr[0], alloc_ptr[1], alloc_ptr[2], alloc_ptr[3], alloc_ptr[4], alloc_ptr[5]);
+    // "s e c r e t"
 
     string_ptr = (char*)malloc(sizeof(char) * 7);
     for(int i = 0; i < 7; i++)
