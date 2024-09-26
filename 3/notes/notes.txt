@@ -1,0 +1,43 @@
+
+FUNCTIONS MAP
+<check>     = #NEVER CALLED# void unknown(void)
+<fn_142418> = #NEVER CALLED# void unknown(void)
+<fn_142437> = #USELESS# long anti_patch(long, long)
+<main>      = int main()
+<fn_142419> = void process_input(char*, int)
+<fn_142420> = void get_input()
+
+
+STATIC VARIABLES MAP
+read-only data pulled with the readelf -x .rodata unix command:
+at position 0x00002005: "crackme123" ++ '\0'
+at position 0x0000200F: "Nope" ++ '\0'
+at position 0x00002014: "Enter the password: " ++ '\0'
+at position 0x00002029: "%s" ++ '\0'
+at position 0x0000202C: "Correct!" ++ '\0'
+at position 0x00002035: "Nope!" ++ '\0'
+
+
+NOTES
+-i feel like this is going to be a tough one
+-MULTI-THREADING????
+-nope, apparently its just some sort of stack protector, im still not sure about
+this though
+-learning how to dump with readelf has been a massive breakthrough for me here
+-endianness combined with stack growth direction creates the best opportunities
+for foot shooting
+-the "call()" and "fn_142418()" functions are never called?
+-apparently functions that never call other functions dont need to allocate bytes 
+to the stack
+-i am guessing the "fn_142437" function is just some anti-patching measure? i'll
+ignore it for now, this whole function pointer offset thing is new to me
+-gdb testing suggests that the magic number comparison in the line after always 
+passes, so, whatever.
+- V -> Z
+- W -> A
+-Haha, the obfuscated character "encryption" math was genius, took me a lot of
+effort to analyze a function with such a simple premise with such a convoluted
+machine code
+-i just now noticed there is a "crackme123" string in the main function for some
+reason, it doesn't even do anything. Its probably just a hint that i missed
+-this was a very fun one

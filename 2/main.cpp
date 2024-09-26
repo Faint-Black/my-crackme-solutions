@@ -1,5 +1,6 @@
 #include <iostream>
 
+// nimacpp - Level 1
 // https://crackmes.one/crackme/65d490306d3d2b1fef4be1ad
 //
 // solution: the binary should be renamed such that argv[0] satisfies the "nima"

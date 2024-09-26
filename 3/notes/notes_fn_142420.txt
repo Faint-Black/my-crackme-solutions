@@ -1,0 +1,94 @@
+
++-------------+
+|DUMP ANALYSIS| dumped with objdump -d -M intel
++-------------+------------------------------------------------------------------------------------
+
+function <get_input>
+----SETTING UP STACK FRAME AND STACK PROTECTOR
+endbr64 
+push   rbp
+mov    rbp,rsp
+sub    rsp,0xe0
+mov    rax,QWORD PTR fs:0x28
+mov    QWORD PTR [rbp-0x8],rax
+xor    eax,eax
+
+----char* coded_string_ptr = REVERSE{0x6d,0x67,0x76,0x65,0x77,0x69,0x65,0x67} ++ REVERSE{0x76,0x69,0x6c,0x74,0x00};
+movabs rax,0x6d67766577696567
+mov    edx,0x76696c74
+mov    QWORD PTR [rbp-0x70],rax
+mov    QWORD PTR [rbp-0x68],rdx
+mov    QWORD PTR [rbp-0x60],0x0
+mov    QWORD PTR [rbp-0x58],0x0
+mov    QWORD PTR [rbp-0x50],0x0
+mov    QWORD PTR [rbp-0x48],0x0
+mov    QWORD PTR [rbp-0x40],0x0
+mov    QWORD PTR [rbp-0x38],0x0
+mov    QWORD PTR [rbp-0x30],0x0
+mov    QWORD PTR [rbp-0x28],0x0
+mov    QWORD PTR [rbp-0x20],0x0
+mov    QWORD PTR [rbp-0x18],0x0
+mov    DWORD PTR [rbp-0x10],0x0
+----OUTPUT OF THIS IS MOST LIKELY THE STRING: "geiwevgmtliv"
+
+----PRINT ("Enter the password:")
+lea    rax,[rip+0xa3a]        # 2014 <_IO_stdin_used+0x14> ## "Enter the password: "
+mov    rdi,rax
+mov    eax,0x0
+call   10e0 <printf@plt>
+
+----GET INPUT STRING WITH scanf() and store it in "input_string_ptr" with the %s format
+lea    rax,[rbp-0xe0]
+mov    rsi,rax
+lea    rax,[rip+0xa31]        # 2029 <_IO_stdin_used+0x29> ## "%s"
+mov    rdi,rax
+mov    eax,0x0
+call   1100 <__isoc99_scanf@plt>
+
+----process_input(input_string_ptr, 4);
+lea    rax,[rbp-0xe0]
+mov    esi,0x4
+mov    rdi,rax
+call   1209 <fn_142419>
+
+----IF (strcmp(input_string_ptr, coded_string_ptr) == 0) { SUCCESS }
+lea    rdx,[rbp-0x70]
+lea    rax,[rbp-0xe0]
+mov    rsi,rdx
+mov    rdi,rax
+call   10f0 <strcmp@plt>
+test   eax,eax
+jne    164c <fn_142420+0x105>
+
+lea    rax,[rip+0x9f2]        # 202c <_IO_stdin_used+0x2c> ## "Correct!"
+mov    rdi,rax
+call   10b0 <puts@plt>
+mov    edi,0x0
+call   1110 <exit@plt>
+
+lea    rax,[rip+0x9bc]        # 200f <_IO_stdin_used+0xf> ## "Nope"
+mov    rdi,rax
+call   10b0 <puts@plt>
+mov    rax,QWORD PTR [rbp-0x8]
+sub    rax,QWORD PTR fs:0x28
+je     1670 <fn_142420+0x129>
+call   10d0 <__stack_chk_fail@plt>
+leave  
+ret    
+
+---------------------------------------------------------------------------------------------------
+
+
+FUNCTION DETAILS:
+-purpose: Judging by the fact that this is the only function that calls for scanf(), it receives
+the input string from the user and does some sort of processing
+-return type: since, at the end of the function, RAX is being used to check the integrity of the
+stack canary and panics if it fails, i am 99% sure this is a void function
+-input parameters: RDI is written to before the chance of being read, i am 99% sure this function
+takes no parameters
+
+
+LOCAL VARIABLES MAP
+[rbp-0xe0]  = 64-bit, "char* input_string_ptr"
+[rbp-0x70]  = 64-bit, array of 64-bit ints, "coded_string_ptr"
+[rbp-0x8]   = 64-bit, "stack_canary"

@@ -1,0 +1,107 @@
+
++-------------+
+|DUMP ANALYSIS| dumped with objdump -d -M intel
++-------------+------------------------------------------------------------------------------------
+
+function <main>
+----SETTING UP main() STACK FRAME, NO ARGC AND NO ARGV
+endbr64 
+push   rbp
+mov    rbp,rsp
+sub    rsp,0x110
+
+----SET UP STACK PROTECTOR
+mov    rax,QWORD PTR fs:0x28
+mov    QWORD PTR [rbp-0x8],rax
+xor    eax,eax
+
+----fn_142420_ptr = fn_142420
+lea    rax,[rip+0xfffffffffffffeb0]        # 1547 <fn_142420>
+mov    QWORD PTR [rbp-0x108],rax
+
+----142420_main_offset = main - fn_142420
+lea    rax,[rip+0xffffffffffffffcd]        # 1672 <main>
+lea    rdx,[rip+0xfffffffffffffe9b]        # 1547 <fn_142420>
+sub    rax,rdx
+mov    QWORD PTR [rbp-0x100],rax
+
+----CHECK FOR BINARY PATCH WITH MAGIC NUMBER
+lea    rax,[rip+0xfffffffffffffe8a]        # 1547 <fn_142420>
+mov    QWORD PTR [rbp-0xf8],rax
+mov    rdx,QWORD PTR [rbp-0x100]
+mov    rax,QWORD PTR [rbp-0xf8]
+mov    rsi,rdx
+mov    rdi,rax
+call   14df <fn_142437>
+mov    QWORD PTR [rbp-0xf0],rax
+movabs rax,0x3fe69def7551fdbf
+mov    QWORD PTR [rbp-0xe8],rax
+mov    rax,QWORD PTR [rbp-0xf0]
+cmp    rax,QWORD PTR [rbp-0xe8]
+je     171e <main+0xac> # LABEL_Skip
+lea    rax,[rip+0x929]        # 2035 <_IO_stdin_used+0x35> ## "Nope!"
+mov    rdi,rax
+call   10b0 <puts@plt>
+mov    eax,0x1
+jmp    17e0 <main+0x16e> # LABEL_Exit
+# LABEL_Skip:
+
+----CALL get_input()
+mov    eax,0x0
+call   1547 <fn_142420> # get_input()
+
+movabs rax,0x31656d6b63617263
+mov    edx,0x3332
+mov    QWORD PTR [rbp-0xe0],rax
+mov    QWORD PTR [rbp-0xd8],rdx
+mov    QWORD PTR [rbp-0xd0],0x0
+mov    QWORD PTR [rbp-0xc8],0x0
+mov    QWORD PTR [rbp-0xc0],0x0
+mov    QWORD PTR [rbp-0xb8],0x0
+mov    QWORD PTR [rbp-0xb0],0x0
+mov    QWORD PTR [rbp-0xa8],0x0
+mov    QWORD PTR [rbp-0xa0],0x0
+mov    QWORD PTR [rbp-0x98],0x0
+mov    QWORD PTR [rbp-0x90],0x0
+mov    QWORD PTR [rbp-0x88],0x0
+mov    DWORD PTR [rbp-0x80],0x0
+lea    rdx,[rbp-0x70]
+lea    rax,[rbp-0xe0]
+mov    rsi,rdx
+mov    rdi,rax
+call   10f0 <strcmp@plt>
+test   eax,eax
+jne    17db <main+0x169>
+mov    eax,0x0
+jmp    17e0 <main+0x16e> # LABEL_Exit
+mov    eax,0x0
+
+# LABEL_Exit:
+mov    rdx,QWORD PTR [rbp-0x8]
+sub    rdx,QWORD PTR fs:0x28
+je     17f4 <main+0x182>
+call   10d0 <__stack_chk_fail@plt>
+leave  
+ret 
+---------------------------------------------------------------------------------------------------
+
+
+LOCAL VARIABLES MAP
+[rbp-0x8]   = 64-bit, "stack_canary"
+[rbp-0xe0]  = 64-bit, 
+[rbp-0xd8]  = 64-bit, 
+[rbp-0xd0]  = 64-bit, 
+[rbp-0xc8]  = 64-bit, 
+[rbp-0xc0]  = 64-bit, 
+[rbp-0xb8]  = 64-bit, 
+[rbp-0xb0]  = 64-bit, 
+[rbp-0xa8]  = 64-bit, 
+[rbp-0xa0]  = 64-bit, 
+[rbp-0x98]  = 64-bit, 
+[rbp-0x90]  = 64-bit, 
+[rbp-0x88]  = 64-bit, 
+[rbp-0x80]  = 32-bit, 
+[rbp-0x70]  = ?
+[rbp-0xf8]  = 64-bit,
+[rbp-0x100] = 64-bit, function offsets, "142420_main_offset"
+[rbp-0x108] = 64-bit, function pointer, "fn_142420_ptr"

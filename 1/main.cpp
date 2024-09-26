@@ -2,6 +2,7 @@
 #include <cstring>
 #include <memory>
 
+// stonezarcon - Getting Started
 // https://crackmes.one/crackme/660a24f1cddae72ae250bf56
 //
 // solution: argv[1] = "secret"

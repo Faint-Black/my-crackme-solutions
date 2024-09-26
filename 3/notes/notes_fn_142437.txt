@@ -1,0 +1,53 @@
+
++-------------+
+|DUMP ANALYSIS| dumped with objdump -d -M intel
++-------------+------------------------------------------------------------------------------------
+
+----SET UP STACK FRAME, NO ALLOCATE
+endbr64 
+push   rbp
+mov    rbp,rsp
+mov    QWORD PTR [rbp-0x28],rdi
+mov    QWORD PTR [rbp-0x30],rsi
+
+mov    rax,QWORD PTR [rbp-0x28]
+mov    QWORD PTR [rbp-0x8],rax
+mov    QWORD PTR [rbp-0x18],0x0
+mov    QWORD PTR [rbp-0x10],0x0
+jmp    1537 <fn_142437+0x58>
+mov    rdx,QWORD PTR [rbp-0x18]
+mov    rax,rdx
+shl    rax,0x5
+sub    rax,rdx
+mov    rcx,rax
+mov    rdx,QWORD PTR [rbp-0x8]
+mov    rax,QWORD PTR [rbp-0x10]
+add    rax,rdx
+movzx  eax,BYTE PTR [rax]
+movzx  eax,al
+add    rax,rcx
+mov    QWORD PTR [rbp-0x18],rax
+add    QWORD PTR [rbp-0x10],0x1
+mov    rax,QWORD PTR [rbp-0x10]
+cmp    rax,QWORD PTR [rbp-0x30]
+jb     1509 <fn_142437+0x2a>
+mov    rax,QWORD PTR [rbp-0x18]
+pop    rbp
+ret    
+
+---------------------------------------------------------------------------------------------------
+
+FUNCTION DETAILS:
+-nickname: anti-patch?
+-purpose: 
+-return type: 64-bit int
+-input parameters: 64-bit int, 64-bit int
+
+
+LOCAL VARIABLES MAP
+[rbp-0x30]  = 64-bit, function parameter 2, "char* _string_ptr"
+[rbp-0x28]  = 64-bit, function parameter 1, "char* _string_ptr"
+[rbp-0x20]  = 64-bit, unknown, "void* blahblahblah"
+[rbp-0x18]  = 64-bit, unknown, "void* blahblahblah"
+[rbp-0x10]  = 64-bit, unknown, "void* blahblahblah"
+[rbp-0x8]   = 64-bit, unknown, "void* blahblahblah"

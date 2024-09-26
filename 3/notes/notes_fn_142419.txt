@@ -1,0 +1,151 @@
++-------------+
+|DUMP ANALYSIS| dumped with objdump -d -M intel
++-------------+------------------------------------------------------------------------------------
+
+function <process_input>
+----SETTING UP STACK FRAME
+endbr64 
+push   rbp
+mov    rbp,rsp
+push   rbx
+sub    rsp,0x28
+mov    QWORD PTR [rbp-0x28],rdi
+mov    DWORD PTR [rbp-0x2c],esi
+
+----"i" = 0;
+mov    DWORD PTR [rbp-0x14],0x0
+
+----WHILE LOOP
+jmp    131f <fn_142419+0x116> # LABEL_Compare
+
+    # LABEL_LoopBegin
+    ----IF((_string_ptr[i] <= 64) OR (_string_ptr[i] > 90)) {JUMP TO LABEL_Not_UpperCaseLetter}
+    mov    eax,DWORD PTR [rbp-0x14]
+    movsxd rdx,eax
+    mov    rax,QWORD PTR [rbp-0x28]
+    add    rax,rdx
+    movzx  eax,BYTE PTR [rax]
+    cmp    al,0x40
+    jle    12a3 <fn_142419+0x9a> # LABEL_Not_UpperCaseLetter
+    mov    eax,DWORD PTR [rbp-0x14]
+    movsxd rdx,eax
+    mov    rax,QWORD PTR [rbp-0x28]
+    add    rax,rdx
+    movzx  eax,BYTE PTR [rax]
+    cmp    al,0x5a
+    jg     12a3 <fn_142419+0x9a> # LABEL_Not_UpperCaseLetter
+
+    ----RAX = (_string_ptr[i] - 0x41) + _num
+    ----RDX = (_string_ptr[i] - 0x41) + _num
+    mov    eax,DWORD PTR [rbp-0x14]
+    movsxd rdx,eax                 
+    mov    rax,QWORD PTR [rbp-0x28]
+    add    rax,rdx                 
+    movzx  eax,BYTE PTR [rax]      
+    movsx  eax,al                  
+    lea    edx,[rax-0x41]          
+    mov    eax,DWORD PTR [rbp-0x2c]
+    add    eax,edx                 
+    movsxd rdx,eax                 
+
+    ----ENCRYPTION MATH FOR UPPERCASE LETTERS
+    imul   rdx,rdx,0x4ec4ec4f 
+    shr    rdx,0x20           - RDX = floor((_num + (_string_ptr[i] - 0x41)) / 3.25)
+    sar    edx,0x3            - RDX = RDX >> 3
+    mov    ecx,eax            - RCX = RAX <- (_num + (_string_ptr[i] - 0x41))
+    sar    ecx,0x1f           - RCX = RCX >> 31
+    sub    edx,ecx            - RDX = RDX - RCX
+    imul   ecx,edx,0x1a       - RCX = RDX * 26
+    sub    eax,ecx            - RAX = RAX - RCX
+    mov    edx,eax            - RDX = RAX
+    mov    eax,edx            - RAX = RDX
+    lea    ecx,[rax+0x41]     - RCX = RAX + 0x41
+
+    ----_string_ptr[i] = RESULT OF ABOVE
+    mov    eax,DWORD PTR [rbp-0x14]
+    movsxd rdx,eax
+    mov    rax,QWORD PTR [rbp-0x28]
+    add    rax,rdx
+    mov    edx,ecx
+    mov    BYTE PTR [rax],dl
+    jmp    131b <fn_142419+0x112> # LABEL_Continue
+
+    # LABEL_Not_UpperCaseLetter:
+    ----IF((_string_ptr[i] <= 96) OR (_string_ptr[i] > 122)) {JUMP TO LABEL_Continue}
+    mov    eax,DWORD PTR [rbp-0x14]
+    movsxd rdx,eax
+    mov    rax,QWORD PTR [rbp-0x28]
+    add    rax,rdx
+    movzx  eax,BYTE PTR [rax]
+    cmp    al,0x60
+    jle    131b <fn_142419+0x112> # LABEL_Continue
+    mov    eax,DWORD PTR [rbp-0x14]
+    movsxd rdx,eax
+    mov    rax,QWORD PTR [rbp-0x28]
+    add    rax,rdx
+    movzx  eax,BYTE PTR [rax]
+    cmp    al,0x7a
+    jg     131b <fn_142419+0x112> # LABEL_Continue
+
+    ----FOO
+    mov    eax,DWORD PTR [rbp-0x14]
+    movsxd rdx,eax
+    mov    rax,QWORD PTR [rbp-0x28]
+    add    rax,rdx
+    movzx  eax,BYTE PTR [rax]
+    movsx  eax,al
+    lea    edx,[rax-0x61]
+    mov    eax,DWORD PTR [rbp-0x2c]
+    add    eax,edx
+    movsxd rdx,eax
+    imul   rdx,rdx,0x4ec4ec4f
+    shr    rdx,0x20
+    sar    edx,0x3
+    mov    ecx,eax
+    sar    ecx,0x1f
+    sub    edx,ecx
+    imul   ecx,edx,0x1a
+    sub    eax,ecx
+    mov    edx,eax
+    mov    eax,edx
+    lea    ecx,[rax+0x61]
+    mov    eax,DWORD PTR [rbp-0x14]
+    movsxd rdx,eax
+    mov    rax,QWORD PTR [rbp-0x28]
+    add    rax,rdx
+    mov    edx,ecx
+    mov    BYTE PTR [rax],dl
+
+    ----i++
+    # LABEL_Continue:
+    add    DWORD PTR [rbp-0x14],0x1
+
+----IF (i < strlen(_string_ptr)) {JUMP TO LABEL_LoopBegin}
+# LABEL_Compare:
+mov    eax,DWORD PTR [rbp-0x14]
+movsxd rbx,eax
+mov    rax,QWORD PTR [rbp-0x28]
+mov    rdi,rax
+call   10c0 <strlen@plt>
+cmp    rbx,rax
+jb     1229 <fn_142419+0x20>
+
+nop
+nop
+mov    rbx,QWORD PTR [rbp-0x8]
+leave  
+ret    
+---------------------------------------------------------------------------------------------------
+
+
+FUNCTION DETAILS:
+-purpose: By the looks of it, this function does some sort of processing to it's parameter string,
+mutating it along the way
+-return type: void, but mutates one parameter
+-input parameters: char* and int
+
+
+LOCAL VARIABLES MAP
+[rbp-0x28]  = 64-bit, function parameter 1, "char* _string_ptr"
+[rbp-0x2c]  = 32-bit, function parameter 2, "int _num"
+[rbp-0x14]  = 32-bit, local variable, "int i"
