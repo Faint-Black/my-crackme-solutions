@@ -1,19 +1,19 @@
-#include <stdio.h>
-#include <string.h>
-
 /*
-prague - Bored
+Bored - by prague
 https://crackmes.one/crackme/6578347c35240bf986f100e9
 
 solution: password = "caesarcipher"
 
 The following is a recreation of what the original source code of the crackme
-binary may have looked like.
+binary may have looked like, along with an optional keygen function.
 */
+
+#include <stdio.h>
+#include <string.h>
 
 void get_input(void);
 void process_input(char *, int);
-void my_solution_generator(const char *, int);
+void keygen(char *, int);
 
 int main(void) {
     get_input();
@@ -40,7 +40,7 @@ void get_input(void) {
     coded_string_ptr[12] = (unsigned long)0x0000000000000000;
 
     /* uncomment line below to print the solution */
-    /* my_solution_generator((char*)coded_string_ptr, 4); */
+    /* keygen((char*)coded_string_ptr, 4); */
 
     printf("Enter the password: ");
     scanf("%s", input_string_ptr);
@@ -85,12 +85,12 @@ void process_input(char *_input_string, int _shift) {
     return;
 }
 
-void my_solution_generator(const char *_string, int _shift) {
+void keygen(char *_string, int _shift) {
     int wrap;
     char c;
     unsigned int i = 0;
 
-    printf("solution: ");
+    printf("solution string: \"");
     while (i < (strlen(_string))) {
         if (_string[i] >= 'A' && _string[i] <= 'Z') {
             wrap = (_string[i] < ('A' + _shift));
@@ -105,7 +105,7 @@ void my_solution_generator(const char *_string, int _shift) {
         }
         ++i;
     }
+    printf("\"\n");
 
-    printf("\n");
     return;
 }

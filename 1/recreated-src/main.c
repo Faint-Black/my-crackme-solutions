@@ -1,16 +1,18 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
 /*
-stonezarcon - Getting Started
+Getting Started - by stonezarcon
 https://crackmes.one/crackme/660a24f1cddae72ae250bf56
 
 solution: argv[1] = "secret"
 
 The following is a recreation of what the original source code of the crackme
-binary may have looked like.
+binary may have looked like, along with an optional keygen function.
 */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+void keygen(int*);
 
 int main(int argc, char** argv)
 {
@@ -39,7 +41,9 @@ int main(int argc, char** argv)
         alloc_ptr[4] += 1;
         alloc_ptr[5] += 1;
     }
-    /* printing the resulting array returns "s e c r e t" */
+
+    /* uncomment line below to print the solution */
+    /* keygen(alloc_ptr); */
 
     string_ptr = (char*)malloc(7 * sizeof(char));
     for(i = 0; i < 7; i++){
@@ -55,4 +59,16 @@ int main(int argc, char** argv)
     }
 
     return 0;
+}
+
+void keygen(int* _str)
+{
+    int i;
+    char buf[7];
+
+    for(i = 0; i < 6; i++){
+        buf[i] = (char)_str[i];
+    }
+    buf[6] = '\0';
+    printf("solution string: \"%s\"\n", buf);
 }

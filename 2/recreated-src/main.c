@@ -1,7 +1,5 @@
-#include <stdio.h>
-
 /*
-nimacpp - Level 1
+Level 1 - by nimacpp
 https://crackmes.one/crackme/65d490306d3d2b1fef4be1ad
 
 solution: the binary should be renamed such that argv[0] satisfies the "nima"
@@ -12,6 +10,8 @@ solution: the binary should be renamed such that argv[0] satisfies the "nima"
 The following is a recreation of what the original source code of the crackme
 binary may have looked like.
 */
+
+#include <stdio.h>
 
 int main(int argc, char **argv) {
   if (argc != 2) {
