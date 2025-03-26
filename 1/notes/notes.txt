@@ -1,6 +1,6 @@
 
 +-------------+
-|DUMP ANALYSIS| dumped with objdump -d -M intel
+|DUMP ANALYSIS|
 +-------------+---------------------------------------------------------------------------------
 
 function <main>

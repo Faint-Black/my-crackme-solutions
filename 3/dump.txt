@@ -1,18 +1,355 @@
+Binary name: ./a.out
+ 
++============+
+|  ELF DATA  |
++============+===========================================================
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              DYN (Position-Independent Executable file)
+  Machine:                           Advanced Micro Devices X86-64
+  Version:                           0x1
+  Entry point address:               0x1120
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          14408 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         13
+  Size of section headers:           64 (bytes)
+  Number of section headers:         31
+  Section header string table index: 30
 
-a.out:     file format elf64-x86-64
+Section Headers:
+  [Nr] Name              Type             Address           Offset
+       Size              EntSize          Flags  Link  Info  Align
+  [ 0]                   NULL             0000000000000000  00000000
+       0000000000000000  0000000000000000           0     0     0
+  [ 1] .interp           PROGBITS         0000000000000318  00000318
+       000000000000001c  0000000000000000   A       0     0     1
+  [ 2] .note.gnu.pr[...] NOTE             0000000000000338  00000338
+       0000000000000030  0000000000000000   A       0     0     8
+  [ 3] .note.gnu.bu[...] NOTE             0000000000000368  00000368
+       0000000000000024  0000000000000000   A       0     0     4
+  [ 4] .note.ABI-tag     NOTE             000000000000038c  0000038c
+       0000000000000020  0000000000000000   A       0     0     4
+  [ 5] .gnu.hash         GNU_HASH         00000000000003b0  000003b0
+       0000000000000024  0000000000000000   A       6     0     8
+  [ 6] .dynsym           DYNSYM           00000000000003d8  000003d8
+       0000000000000138  0000000000000018   A       7     1     8
+  [ 7] .dynstr           STRTAB           0000000000000510  00000510
+       00000000000000db  0000000000000000   A       0     0     1
+  [ 8] .gnu.version      VERSYM           00000000000005ec  000005ec
+       000000000000001a  0000000000000002   A       6     0     2
+  [ 9] .gnu.version_r    VERNEED          0000000000000608  00000608
+       0000000000000050  0000000000000000   A       7     1     8
+  [10] .rela.dyn         RELA             0000000000000658  00000658
+       00000000000000c0  0000000000000018   A       6     0     8
+  [11] .rela.plt         RELA             0000000000000718  00000718
+       00000000000000a8  0000000000000018  AI       6    24     8
+  [12] .init             PROGBITS         0000000000001000  00001000
+       000000000000001b  0000000000000000  AX       0     0     4
+  [13] .plt              PROGBITS         0000000000001020  00001020
+       0000000000000080  0000000000000010  AX       0     0     16
+  [14] .plt.got          PROGBITS         00000000000010a0  000010a0
+       0000000000000010  0000000000000010  AX       0     0     16
+  [15] .plt.sec          PROGBITS         00000000000010b0  000010b0
+       0000000000000070  0000000000000010  AX       0     0     16
+  [16] .text             PROGBITS         0000000000001120  00001120
+       00000000000006d6  0000000000000000  AX       0     0     16
+  [17] .fini             PROGBITS         00000000000017f8  000017f8
+       000000000000000d  0000000000000000  AX       0     0     4
+  [18] .rodata           PROGBITS         0000000000002000  00002000
+       000000000000003b  0000000000000000   A       0     0     4
+  [19] .eh_frame_hdr     PROGBITS         000000000000203c  0000203c
+       000000000000005c  0000000000000000   A       0     0     4
+  [20] .eh_frame         PROGBITS         0000000000002098  00002098
+       0000000000000154  0000000000000000   A       0     0     8
+  [21] .init_array       INIT_ARRAY       0000000000003d88  00002d88
+       0000000000000008  0000000000000008  WA       0     0     8
+  [22] .fini_array       FINI_ARRAY       0000000000003d90  00002d90
+       0000000000000008  0000000000000008  WA       0     0     8
+  [23] .dynamic          DYNAMIC          0000000000003d98  00002d98
+       00000000000001f0  0000000000000010  WA       7     0     8
+  [24] .got              PROGBITS         0000000000003f88  00002f88
+       0000000000000078  0000000000000008  WA       0     0     8
+  [25] .data             PROGBITS         0000000000004000  00003000
+       0000000000000010  0000000000000000  WA       0     0     8
+  [26] .bss              NOBITS           0000000000004010  00003010
+       0000000000000008  0000000000000000  WA       0     0     1
+  [27] .comment          PROGBITS         0000000000000000  00003010
+       000000000000002b  0000000000000001  MS       0     0     1
+  [28] .symtab           SYMTAB           0000000000000000  00003040
+       0000000000000468  0000000000000018          29    18     8
+  [29] .strtab           STRTAB           0000000000000000  000034a8
+       0000000000000286  0000000000000000           0     0     1
+  [30] .shstrtab         STRTAB           0000000000000000  0000372e
+       000000000000011a  0000000000000000           0     0     1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  D (mbind), l (large), p (processor specific)
+
+There are no section groups in this file.
+
+Program Headers:
+  Type           Offset             VirtAddr           PhysAddr
+                 FileSiz            MemSiz              Flags  Align
+  PHDR           0x0000000000000040 0x0000000000000040 0x0000000000000040
+                 0x00000000000002d8 0x00000000000002d8  R      0x8
+  INTERP         0x0000000000000318 0x0000000000000318 0x0000000000000318
+                 0x000000000000001c 0x000000000000001c  R      0x1
+      [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+  LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x00000000000007c0 0x00000000000007c0  R      0x1000
+  LOAD           0x0000000000001000 0x0000000000001000 0x0000000000001000
+                 0x0000000000000805 0x0000000000000805  R E    0x1000
+  LOAD           0x0000000000002000 0x0000000000002000 0x0000000000002000
+                 0x00000000000001ec 0x00000000000001ec  R      0x1000
+  LOAD           0x0000000000002d88 0x0000000000003d88 0x0000000000003d88
+                 0x0000000000000288 0x0000000000000290  RW     0x1000
+  DYNAMIC        0x0000000000002d98 0x0000000000003d98 0x0000000000003d98
+                 0x00000000000001f0 0x00000000000001f0  RW     0x8
+  NOTE           0x0000000000000338 0x0000000000000338 0x0000000000000338
+                 0x0000000000000030 0x0000000000000030  R      0x8
+  NOTE           0x0000000000000368 0x0000000000000368 0x0000000000000368
+                 0x0000000000000044 0x0000000000000044  R      0x4
+  GNU_PROPERTY   0x0000000000000338 0x0000000000000338 0x0000000000000338
+                 0x0000000000000030 0x0000000000000030  R      0x8
+  GNU_EH_FRAME   0x000000000000203c 0x000000000000203c 0x000000000000203c
+                 0x000000000000005c 0x000000000000005c  R      0x4
+  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000
+                 0x0000000000000000 0x0000000000000000  RW     0x10
+  GNU_RELRO      0x0000000000002d88 0x0000000000003d88 0x0000000000003d88
+                 0x0000000000000278 0x0000000000000278  R      0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .interp 
+   02     .interp .note.gnu.property .note.gnu.build-id .note.ABI-tag .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt 
+   03     .init .plt .plt.got .plt.sec .text .fini 
+   04     .rodata .eh_frame_hdr .eh_frame 
+   05     .init_array .fini_array .dynamic .got .data .bss 
+   06     .dynamic 
+   07     .note.gnu.property 
+   08     .note.gnu.build-id .note.ABI-tag 
+   09     .note.gnu.property 
+   10     .eh_frame_hdr 
+   11     
+   12     .init_array .fini_array .dynamic .got 
+
+Dynamic section at offset 0x2d98 contains 27 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x000000000000000c (INIT)               0x1000
+ 0x000000000000000d (FINI)               0x17f8
+ 0x0000000000000019 (INIT_ARRAY)         0x3d88
+ 0x000000000000001b (INIT_ARRAYSZ)       8 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0x3d90
+ 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x3b0
+ 0x0000000000000005 (STRTAB)             0x510
+ 0x0000000000000006 (SYMTAB)             0x3d8
+ 0x000000000000000a (STRSZ)              219 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000015 (DEBUG)              0x0
+ 0x0000000000000003 (PLTGOT)             0x3f88
+ 0x0000000000000002 (PLTRELSZ)           168 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0x718
+ 0x0000000000000007 (RELA)               0x658
+ 0x0000000000000008 (RELASZ)             192 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000000000001e (FLAGS)              BIND_NOW
+ 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE
+ 0x000000006ffffffe (VERNEED)            0x608
+ 0x000000006fffffff (VERNEEDNUM)         1
+ 0x000000006ffffff0 (VERSYM)             0x5ec
+ 0x000000006ffffff9 (RELACOUNT)          3
+ 0x0000000000000000 (NULL)               0x0
+
+Relocation section '.rela.dyn' at offset 0x658 contains 8 entries:
+  Offset          Info           Type           Sym. Value    Sym. Name + Addend
+000000003d88  000000000008 R_X86_64_RELATIVE                    1200
+000000003d90  000000000008 R_X86_64_RELATIVE                    11c0
+000000004008  000000000008 R_X86_64_RELATIVE                    4008
+000000003fd8  000100000006 R_X86_64_GLOB_DAT 0000000000000000 __libc_start_main@GLIBC_2.34 + 0
+000000003fe0  000200000006 R_X86_64_GLOB_DAT 0000000000000000 _ITM_deregisterTM[...] + 0
+000000003fe8  000800000006 R_X86_64_GLOB_DAT 0000000000000000 __gmon_start__ + 0
+000000003ff0  000b00000006 R_X86_64_GLOB_DAT 0000000000000000 _ITM_registerTMCl[...] + 0
+000000003ff8  000c00000006 R_X86_64_GLOB_DAT 0000000000000000 __cxa_finalize@GLIBC_2.2.5 + 0
+
+Relocation section '.rela.plt' at offset 0x718 contains 7 entries:
+  Offset          Info           Type           Sym. Value    Sym. Name + Addend
+000000003fa0  000300000007 R_X86_64_JUMP_SLO 0000000000000000 puts@GLIBC_2.2.5 + 0
+000000003fa8  000400000007 R_X86_64_JUMP_SLO 0000000000000000 strlen@GLIBC_2.2.5 + 0
+000000003fb0  000500000007 R_X86_64_JUMP_SLO 0000000000000000 __stack_chk_fail@GLIBC_2.4 + 0
+000000003fb8  000600000007 R_X86_64_JUMP_SLO 0000000000000000 printf@GLIBC_2.2.5 + 0
+000000003fc0  000700000007 R_X86_64_JUMP_SLO 0000000000000000 strcmp@GLIBC_2.2.5 + 0
+000000003fc8  000900000007 R_X86_64_JUMP_SLO 0000000000000000 __isoc99_scanf@GLIBC_2.7 + 0
+000000003fd0  000a00000007 R_X86_64_JUMP_SLO 0000000000000000 exit@GLIBC_2.2.5 + 0
+No processor specific unwind information to decode
+
+Symbol table '.dynsym' contains 13 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _[...]@GLIBC_2.34 (2)
+     2: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+     3: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5 (3)
+     4: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBC_2.2.5 (3)
+     5: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.4 (4)
+     6: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBC_2.2.5 (3)
+     7: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND [...]@GLIBC_2.2.5 (3)
+     8: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+     9: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __[...]@GLIBC_2.7 (5)
+    10: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND exit@GLIBC_2.2.5 (3)
+    11: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    12: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND [...]@GLIBC_2.2.5 (3)
+
+Symbol table '.symtab' contains 47 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS Scrt1.o
+     2: 000000000000038c    32 OBJECT  LOCAL  DEFAULT    4 __abi_tag
+     3: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crtstuff.c
+     4: 0000000000001150     0 FUNC    LOCAL  DEFAULT   16 deregister_tm_clones
+     5: 0000000000001180     0 FUNC    LOCAL  DEFAULT   16 register_tm_clones
+     6: 00000000000011c0     0 FUNC    LOCAL  DEFAULT   16 __do_global_dtors_aux
+     7: 0000000000004010     1 OBJECT  LOCAL  DEFAULT   26 completed.0
+     8: 0000000000003d90     0 OBJECT  LOCAL  DEFAULT   22 __do_global_dtor[...]
+     9: 0000000000001200     0 FUNC    LOCAL  DEFAULT   16 frame_dummy
+    10: 0000000000003d88     0 OBJECT  LOCAL  DEFAULT   21 __frame_dummy_in[...]
+    11: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS main.c
+    12: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crtstuff.c
+    13: 00000000000021e8     0 OBJECT  LOCAL  DEFAULT   20 __FRAME_END__
+    14: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS 
+    15: 0000000000003d98     0 OBJECT  LOCAL  DEFAULT   23 _DYNAMIC
+    16: 000000000000203c     0 NOTYPE  LOCAL  DEFAULT   19 __GNU_EH_FRAME_HDR
+    17: 0000000000003f88     0 OBJECT  LOCAL  DEFAULT   24 _GLOBAL_OFFSET_TABLE_
+    18: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_mai[...]
+    19: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterT[...]
+    20: 0000000000004000     0 NOTYPE  WEAK   DEFAULT   25 data_start
+    21: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND puts@GLIBC_2.2.5
+    22: 0000000000004010     0 NOTYPE  GLOBAL DEFAULT   25 _edata
+    23: 00000000000017f8     0 FUNC    GLOBAL HIDDEN    17 _fini
+    24: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strlen@GLIBC_2.2.5
+    25: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail[...]
+    26: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5
+    27: 0000000000004000     0 NOTYPE  GLOBAL DEFAULT   25 __data_start
+    28: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strcmp@GLIBC_2.2.5
+    29: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    30: 0000000000004008     0 OBJECT  GLOBAL HIDDEN    25 __dso_handle
+    31: 0000000000002000     4 OBJECT  GLOBAL DEFAULT   18 _IO_stdin_used
+    32: 0000000000001342   315 FUNC    GLOBAL DEFAULT   16 fn_142418
+    33: 0000000000004018     0 NOTYPE  GLOBAL DEFAULT   26 _end
+    34: 0000000000001120    38 FUNC    GLOBAL DEFAULT   16 _start
+    35: 00000000000014df   104 FUNC    GLOBAL DEFAULT   16 fn_142437
+    36: 0000000000004010     0 NOTYPE  GLOBAL DEFAULT   26 __bss_start
+    37: 0000000000001672   388 FUNC    GLOBAL DEFAULT   16 main
+    38: 000000000000147d    98 FUNC    GLOBAL DEFAULT   16 check
+    39: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __isoc99_scanf@G[...]
+    40: 0000000000001547   299 FUNC    GLOBAL DEFAULT   16 fn_142420
+    41: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND exit@GLIBC_2.2.5
+    42: 0000000000004010     0 OBJECT  GLOBAL HIDDEN    25 __TMC_END__
+    43: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMC[...]
+    44: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_finalize@G[...]
+    45: 0000000000001000     0 FUNC    GLOBAL HIDDEN    12 _init
+    46: 0000000000001209   313 FUNC    GLOBAL DEFAULT   16 fn_142419
+
+Histogram for `.gnu.hash' bucket list length (total of 2 buckets):
+ Length  Number     % of total  Coverage
+      0  1          ( 50.0%)
+      1  1          ( 50.0%)    100.0%
+
+Version symbols section '.gnu.version' contains 13 entries:
+ Addr: 0x00000000000005ec  Offset: 0x000005ec  Link: 6 (.dynsym)
+  000:   0 (*local*)       2 (GLIBC_2.34)    1 (*global*)      3 (GLIBC_2.2.5)
+  004:   3 (GLIBC_2.2.5)   4 (GLIBC_2.4)     3 (GLIBC_2.2.5)   3 (GLIBC_2.2.5)
+  008:   1 (*global*)      5 (GLIBC_2.7)     3 (GLIBC_2.2.5)   1 (*global*)   
+  00c:   3 (GLIBC_2.2.5)
+
+Version needs section '.gnu.version_r' contains 1 entry:
+ Addr: 0x0000000000000608  Offset: 0x00000608  Link: 7 (.dynstr)
+  000000: Version: 1  File: libc.so.6  Cnt: 4
+  0x0010:   Name: GLIBC_2.7  Flags: none  Version: 5
+  0x0020:   Name: GLIBC_2.4  Flags: none  Version: 4
+  0x0030:   Name: GLIBC_2.2.5  Flags: none  Version: 3
+  0x0040:   Name: GLIBC_2.34  Flags: none  Version: 2
+
+Displaying notes found in: .note.gnu.property
+  Owner                Data size 	Description
+  GNU                  0x00000020	NT_GNU_PROPERTY_TYPE_0
+      Properties: x86 feature: IBT, SHSTK
+	x86 ISA needed: x86-64-baseline
+
+Displaying notes found in: .note.gnu.build-id
+  Owner                Data size 	Description
+  GNU                  0x00000014	NT_GNU_BUILD_ID (unique build ID bitstring)
+    Build ID: ac9e1add2bcd3f622c9a2d419bfa422a8bf224e5
+
+Displaying notes found in: .note.ABI-tag
+  Owner                Data size 	Description
+  GNU                  0x00000010	NT_GNU_ABI_TAG (ABI version tag)
+    OS: Linux, ABI: 3.2.0
+=========================================================================
+ 
+ 
++===========+
+|  .RODATA  |
++===========+============================================================
+
+Hex dump of section '.rodata':
+  0x00002000 01000200 63726163 6b6d6531 3233004e ....crackme123.N
+  0x00002010 6f706500 456e7465 72207468 65207061 ope.Enter the pa
+  0x00002020 7373776f 72643a20 00257300 436f7272 ssword: .%s.Corr
+  0x00002030 65637421 004e6f70 652100            ect!.Nope!.
+
+=========================================================================
+ 
+ 
++=========+
+|  .DATA  |
++=========+==============================================================
+
+Hex dump of section '.data':
+  0x00004000 00000000 00000000 08400000 00000000 .........@......
+
+=========================================================================
+ 
+ 
++========+
+|  .BSS  |
++========+===============================================================
+ 
+0x8 Amount of bytes allocated
+ 
+=========================================================================
+ 
+ 
++=================================+
+|  BINARY EXECUTABLE DISASSEMBLY  |
++=================================+======================================
+
+./a.out:     file format elf64-x86-64
 
 
 Disassembly of section .init:
 
 0000000000001000 <_init>:
-    1000:	f3 0f 1e fa          	endbr64 
+    1000:	f3 0f 1e fa          	endbr64
     1004:	48 83 ec 08          	sub    rsp,0x8
     1008:	48 8b 05 d9 2f 00 00 	mov    rax,QWORD PTR [rip+0x2fd9]        # 3fe8 <__gmon_start__@Base>
     100f:	48 85 c0             	test   rax,rax
     1012:	74 02                	je     1016 <_init+0x16>
     1014:	ff d0                	call   rax
     1016:	48 83 c4 08          	add    rsp,0x8
-    101a:	c3                   	ret    
+    101a:	c3                   	ret
 
 Disassembly of section .plt:
 
@@ -20,31 +357,31 @@ Disassembly of section .plt:
     1020:	ff 35 6a 2f 00 00    	push   QWORD PTR [rip+0x2f6a]        # 3f90 <_GLOBAL_OFFSET_TABLE_+0x8>
     1026:	f2 ff 25 6b 2f 00 00 	bnd jmp QWORD PTR [rip+0x2f6b]        # 3f98 <_GLOBAL_OFFSET_TABLE_+0x10>
     102d:	0f 1f 00             	nop    DWORD PTR [rax]
-    1030:	f3 0f 1e fa          	endbr64 
+    1030:	f3 0f 1e fa          	endbr64
     1034:	68 00 00 00 00       	push   0x0
     1039:	f2 e9 e1 ff ff ff    	bnd jmp 1020 <_init+0x20>
     103f:	90                   	nop
-    1040:	f3 0f 1e fa          	endbr64 
+    1040:	f3 0f 1e fa          	endbr64
     1044:	68 01 00 00 00       	push   0x1
     1049:	f2 e9 d1 ff ff ff    	bnd jmp 1020 <_init+0x20>
     104f:	90                   	nop
-    1050:	f3 0f 1e fa          	endbr64 
+    1050:	f3 0f 1e fa          	endbr64
     1054:	68 02 00 00 00       	push   0x2
     1059:	f2 e9 c1 ff ff ff    	bnd jmp 1020 <_init+0x20>
     105f:	90                   	nop
-    1060:	f3 0f 1e fa          	endbr64 
+    1060:	f3 0f 1e fa          	endbr64
     1064:	68 03 00 00 00       	push   0x3
     1069:	f2 e9 b1 ff ff ff    	bnd jmp 1020 <_init+0x20>
     106f:	90                   	nop
-    1070:	f3 0f 1e fa          	endbr64 
+    1070:	f3 0f 1e fa          	endbr64
     1074:	68 04 00 00 00       	push   0x4
     1079:	f2 e9 a1 ff ff ff    	bnd jmp 1020 <_init+0x20>
     107f:	90                   	nop
-    1080:	f3 0f 1e fa          	endbr64 
+    1080:	f3 0f 1e fa          	endbr64
     1084:	68 05 00 00 00       	push   0x5
     1089:	f2 e9 91 ff ff ff    	bnd jmp 1020 <_init+0x20>
     108f:	90                   	nop
-    1090:	f3 0f 1e fa          	endbr64 
+    1090:	f3 0f 1e fa          	endbr64
     1094:	68 06 00 00 00       	push   0x6
     1099:	f2 e9 81 ff ff ff    	bnd jmp 1020 <_init+0x20>
     109f:	90                   	nop
@@ -52,51 +389,51 @@ Disassembly of section .plt:
 Disassembly of section .plt.got:
 
 00000000000010a0 <__cxa_finalize@plt>:
-    10a0:	f3 0f 1e fa          	endbr64 
+    10a0:	f3 0f 1e fa          	endbr64
     10a4:	f2 ff 25 4d 2f 00 00 	bnd jmp QWORD PTR [rip+0x2f4d]        # 3ff8 <__cxa_finalize@GLIBC_2.2.5>
     10ab:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
 Disassembly of section .plt.sec:
 
 00000000000010b0 <puts@plt>:
-    10b0:	f3 0f 1e fa          	endbr64 
+    10b0:	f3 0f 1e fa          	endbr64
     10b4:	f2 ff 25 e5 2e 00 00 	bnd jmp QWORD PTR [rip+0x2ee5]        # 3fa0 <puts@GLIBC_2.2.5>
     10bb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
 00000000000010c0 <strlen@plt>:
-    10c0:	f3 0f 1e fa          	endbr64 
+    10c0:	f3 0f 1e fa          	endbr64
     10c4:	f2 ff 25 dd 2e 00 00 	bnd jmp QWORD PTR [rip+0x2edd]        # 3fa8 <strlen@GLIBC_2.2.5>
     10cb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
 00000000000010d0 <__stack_chk_fail@plt>:
-    10d0:	f3 0f 1e fa          	endbr64 
+    10d0:	f3 0f 1e fa          	endbr64
     10d4:	f2 ff 25 d5 2e 00 00 	bnd jmp QWORD PTR [rip+0x2ed5]        # 3fb0 <__stack_chk_fail@GLIBC_2.4>
     10db:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
 00000000000010e0 <printf@plt>:
-    10e0:	f3 0f 1e fa          	endbr64 
+    10e0:	f3 0f 1e fa          	endbr64
     10e4:	f2 ff 25 cd 2e 00 00 	bnd jmp QWORD PTR [rip+0x2ecd]        # 3fb8 <printf@GLIBC_2.2.5>
     10eb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
 00000000000010f0 <strcmp@plt>:
-    10f0:	f3 0f 1e fa          	endbr64 
+    10f0:	f3 0f 1e fa          	endbr64
     10f4:	f2 ff 25 c5 2e 00 00 	bnd jmp QWORD PTR [rip+0x2ec5]        # 3fc0 <strcmp@GLIBC_2.2.5>
     10fb:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
 0000000000001100 <__isoc99_scanf@plt>:
-    1100:	f3 0f 1e fa          	endbr64 
+    1100:	f3 0f 1e fa          	endbr64
     1104:	f2 ff 25 bd 2e 00 00 	bnd jmp QWORD PTR [rip+0x2ebd]        # 3fc8 <__isoc99_scanf@GLIBC_2.7>
     110b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
 0000000000001110 <exit@plt>:
-    1110:	f3 0f 1e fa          	endbr64 
+    1110:	f3 0f 1e fa          	endbr64
     1114:	f2 ff 25 b5 2e 00 00 	bnd jmp QWORD PTR [rip+0x2eb5]        # 3fd0 <exit@GLIBC_2.2.5>
     111b:	0f 1f 44 00 00       	nop    DWORD PTR [rax+rax*1+0x0]
 
 Disassembly of section .text:
 
 0000000000001120 <_start>:
-    1120:	f3 0f 1e fa          	endbr64 
+    1120:	f3 0f 1e fa          	endbr64
     1124:	31 ed                	xor    ebp,ebp
     1126:	49 89 d1             	mov    r9,rdx
     1129:	5e                   	pop    rsi
@@ -108,7 +445,7 @@ Disassembly of section .text:
     1136:	31 c9                	xor    ecx,ecx
     1138:	48 8d 3d 33 05 00 00 	lea    rdi,[rip+0x533]        # 1672 <main>
     113f:	ff 15 93 2e 00 00    	call   QWORD PTR [rip+0x2e93]        # 3fd8 <__libc_start_main@GLIBC_2.34>
-    1145:	f4                   	hlt    
+    1145:	f4                   	hlt
     1146:	66 2e 0f 1f 84 00 00 	cs nop WORD PTR [rax+rax*1+0x0]
     114d:	00 00 00 
 
@@ -122,7 +459,7 @@ Disassembly of section .text:
     116d:	74 09                	je     1178 <deregister_tm_clones+0x28>
     116f:	ff e0                	jmp    rax
     1171:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
-    1178:	c3                   	ret    
+    1178:	c3                   	ret
     1179:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
 
 0000000000001180 <register_tm_clones>:
@@ -140,11 +477,11 @@ Disassembly of section .text:
     11ae:	74 08                	je     11b8 <register_tm_clones+0x38>
     11b0:	ff e0                	jmp    rax
     11b2:	66 0f 1f 44 00 00    	nop    WORD PTR [rax+rax*1+0x0]
-    11b8:	c3                   	ret    
+    11b8:	c3                   	ret
     11b9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
 
 00000000000011c0 <__do_global_dtors_aux>:
-    11c0:	f3 0f 1e fa          	endbr64 
+    11c0:	f3 0f 1e fa          	endbr64
     11c4:	80 3d 45 2e 00 00 00 	cmp    BYTE PTR [rip+0x2e45],0x0        # 4010 <__TMC_END__>
     11cb:	75 2b                	jne    11f8 <__do_global_dtors_aux+0x38>
     11cd:	55                   	push   rbp
@@ -157,17 +494,17 @@ Disassembly of section .text:
     11e7:	e8 64 ff ff ff       	call   1150 <deregister_tm_clones>
     11ec:	c6 05 1d 2e 00 00 01 	mov    BYTE PTR [rip+0x2e1d],0x1        # 4010 <__TMC_END__>
     11f3:	5d                   	pop    rbp
-    11f4:	c3                   	ret    
+    11f4:	c3                   	ret
     11f5:	0f 1f 00             	nop    DWORD PTR [rax]
-    11f8:	c3                   	ret    
+    11f8:	c3                   	ret
     11f9:	0f 1f 80 00 00 00 00 	nop    DWORD PTR [rax+0x0]
 
 0000000000001200 <frame_dummy>:
-    1200:	f3 0f 1e fa          	endbr64 
+    1200:	f3 0f 1e fa          	endbr64
     1204:	e9 77 ff ff ff       	jmp    1180 <register_tm_clones>
 
 0000000000001209 <fn_142419>:
-    1209:	f3 0f 1e fa          	endbr64 
+    1209:	f3 0f 1e fa          	endbr64
     120d:	55                   	push   rbp
     120e:	48 89 e5             	mov    rbp,rsp
     1211:	53                   	push   rbx
@@ -270,11 +607,11 @@ Disassembly of section .text:
     133a:	90                   	nop
     133b:	90                   	nop
     133c:	48 8b 5d f8          	mov    rbx,QWORD PTR [rbp-0x8]
-    1340:	c9                   	leave  
-    1341:	c3                   	ret    
+    1340:	c9                   	leave
+    1341:	c3                   	ret
 
 0000000000001342 <fn_142418>:
-    1342:	f3 0f 1e fa          	endbr64 
+    1342:	f3 0f 1e fa          	endbr64
     1346:	55                   	push   rbp
     1347:	48 89 e5             	mov    rbp,rsp
     134a:	53                   	push   rbx
@@ -377,11 +714,11 @@ Disassembly of section .text:
     1475:	90                   	nop
     1476:	90                   	nop
     1477:	48 8b 5d f8          	mov    rbx,QWORD PTR [rbp-0x8]
-    147b:	c9                   	leave  
-    147c:	c3                   	ret    
+    147b:	c9                   	leave
+    147c:	c3                   	ret
 
 000000000000147d <check>:
-    147d:	f3 0f 1e fa          	endbr64 
+    147d:	f3 0f 1e fa          	endbr64
     1481:	55                   	push   rbp
     1482:	48 89 e5             	mov    rbp,rsp
     1485:	48 83 ec 10          	sub    rsp,0x10
@@ -406,11 +743,11 @@ Disassembly of section .text:
     14d4:	48 89 c7             	mov    rdi,rax
     14d7:	e8 d4 fb ff ff       	call   10b0 <puts@plt>
     14dc:	90                   	nop
-    14dd:	c9                   	leave  
-    14de:	c3                   	ret    
+    14dd:	c9                   	leave
+    14de:	c3                   	ret
 
 00000000000014df <fn_142437>:
-    14df:	f3 0f 1e fa          	endbr64 
+    14df:	f3 0f 1e fa          	endbr64
     14e3:	55                   	push   rbp
     14e4:	48 89 e5             	mov    rbp,rsp
     14e7:	48 89 7d d8          	mov    QWORD PTR [rbp-0x28],rdi
@@ -440,10 +777,10 @@ Disassembly of section .text:
     153f:	72 c8                	jb     1509 <fn_142437+0x2a>
     1541:	48 8b 45 e8          	mov    rax,QWORD PTR [rbp-0x18]
     1545:	5d                   	pop    rbp
-    1546:	c3                   	ret    
+    1546:	c3                   	ret
 
 0000000000001547 <fn_142420>:
-    1547:	f3 0f 1e fa          	endbr64 
+    1547:	f3 0f 1e fa          	endbr64
     154b:	55                   	push   rbp
     154c:	48 89 e5             	mov    rbp,rsp
     154f:	48 81 ec e0 00 00 00 	sub    rsp,0xe0
@@ -512,11 +849,11 @@ Disassembly of section .text:
     1667:	00 00 
     1669:	74 05                	je     1670 <fn_142420+0x129>
     166b:	e8 60 fa ff ff       	call   10d0 <__stack_chk_fail@plt>
-    1670:	c9                   	leave  
-    1671:	c3                   	ret    
+    1670:	c9                   	leave
+    1671:	c3                   	ret
 
 0000000000001672 <main>:
-    1672:	f3 0f 1e fa          	endbr64 
+    1672:	f3 0f 1e fa          	endbr64
     1676:	55                   	push   rbp
     1677:	48 89 e5             	mov    rbp,rsp
     167a:	48 81 ec 10 01 00 00 	sub    rsp,0x110
@@ -592,13 +929,16 @@ Disassembly of section .text:
     17eb:	00 00 
     17ed:	74 05                	je     17f4 <main+0x182>
     17ef:	e8 dc f8 ff ff       	call   10d0 <__stack_chk_fail@plt>
-    17f4:	c9                   	leave  
-    17f5:	c3                   	ret    
+    17f4:	c9                   	leave
+    17f5:	c3                   	ret
 
 Disassembly of section .fini:
 
 00000000000017f8 <_fini>:
-    17f8:	f3 0f 1e fa          	endbr64 
+    17f8:	f3 0f 1e fa          	endbr64
     17fc:	48 83 ec 08          	sub    rsp,0x8
     1800:	48 83 c4 08          	add    rsp,0x8
-    1804:	c3                   	ret    
+    1804:	c3                   	ret
+=========================================================================
+ 
+ 
