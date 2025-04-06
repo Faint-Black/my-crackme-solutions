@@ -15,22 +15,22 @@ binary may have looked like.
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    puts("Try more ... 1/5");
+    printf("Try more ... 1/5\n");
     return 0;
   }
 
   if (argv[0][0] + argv[1][0] != 110) {
-    puts("Try More ....2/5");
+    printf("Try More ....2/5\n");
     return 0;
   }
 
   if (argv[0][3] == 'n' || argv[0][4] == 'i' || argv[0][5] == 'm' ||
       argv[0][6] == 'a') {
-    puts("true point 5/5");
+    printf("true point 5/5\n");
     return 0;
   }
 
-  puts("Try more .... 3/5");
+  printf("Try more .... 3/5\n");
 
   return 0;
 }

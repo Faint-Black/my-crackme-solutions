@@ -48,9 +48,9 @@ void get_input(void) {
     process_input(input_string_ptr, 4);
 
     if (strcmp((char *)coded_string_ptr, input_string_ptr) == 0) {
-        puts("Correct!");
+        printf("Correct!\n");
     } else {
-        puts("Nope");
+        printf("Nope\n");
     }
 
     return;

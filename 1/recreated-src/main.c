@@ -21,7 +21,7 @@ int main(int argc, char** argv)
     int i;
 
     if(argc <= 1){
-        puts("Denied.");
+        printf("Denied.\n");
         return 0;
     }
 
@@ -52,10 +52,10 @@ int main(int argc, char** argv)
     string_ptr[6] = '\0';
 
     if(strcmp(string_ptr, argv[1]) == 0){
-        puts("Welcome.");
+        printf("Welcome.\n");
     }
     else{
-        puts("Denied.");
+        printf("Denied.\n");
     }
 
     return 0;
